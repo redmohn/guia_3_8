@@ -59,7 +59,8 @@ public class MySQL implements BD {
                     prepareStatement.setInt(8, producto.getPrecioVenta());
                     prepareStatement.setInt(9, producto.getStock());
                     // execute se usa para valores que no tienen datos que retornar (DDL)
-                    ok = prepareStatement.execute();
+                    prepareStatement.execute();
+                    ok = true;
 
                     desconectar(conexion);
                 }
@@ -91,7 +92,8 @@ public class MySQL implements BD {
                     prepareStatement.setInt(8, producto.getStock());
                     prepareStatement.setInt(9, producto.getCodigo());
                     // execute se usa para valores que no tienen datos que retornar (DDL)
-                    ok = prepareStatement.execute();
+                    prepareStatement.execute();
+                    ok = true;
 
                     desconectar(conexion);
                 }
@@ -115,7 +117,8 @@ public class MySQL implements BD {
                     PreparedStatement prepareStatement = conexion.prepareStatement("DELETE FROM producto  WHERE codigo=?");
                     prepareStatement.setInt(1, producto.getCodigo());
                     // execute se usa para valores que no tienen datos que retornar (DDL)
-                    ok = prepareStatement.execute();
+                    prepareStatement.execute();
+                    ok = true;
 
                     desconectar(conexion);
                 }

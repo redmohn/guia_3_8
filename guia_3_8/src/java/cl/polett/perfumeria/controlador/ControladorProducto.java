@@ -3,6 +3,7 @@ package cl.polett.perfumeria.controlador;
 import cl.polett.perfumeria.modelo.Producto;
 import cl.polett.perfumeria.servicio.BD;
 import cl.polett.perfumeria.servicio.impl.MySQL;
+import java.util.List;
 
 /**
  *
@@ -11,10 +12,9 @@ import cl.polett.perfumeria.servicio.impl.MySQL;
 public class ControladorProducto {
 
     public boolean agregar(Integer codigo, String nombre, String familiaProducto, String tipoEnvase, Double medida, String unidadMedida, String descripcion, Integer precioVenta, Integer stock) {
-        boolean ok = false;
 
-        // validaciones para el codigo
-        if (codigo == null || codigo < 100 || codigo > 999) {
+        // validaciones para el codigo - Reglas del negocio
+        if (codigo == null || codigo < 0 || codigo > 999) {
             return false;
         }
 
@@ -43,7 +43,15 @@ public class ControladorProducto {
         producto.setUnidadMedida(unidadMedida);
 
         BD bd = new MySQL();
-        return bd.agregar(producto);
+        boolean ok = bd.agregar(producto);
+        return ok;
+    }
+
+    public List<Producto> mostrarTodos() {
+
+        BD bd = new MySQL();
+        List<Producto> listadoProductos = bd.obtenerTodos();
+        return listadoProductos;
     }
 
 }
