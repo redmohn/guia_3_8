@@ -256,6 +256,11 @@ public class Aplicacion extends javax.swing.JFrame {
         jLabel13.setText("Por Nombre");
 
         jButton2.setText("BUSCAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -309,14 +314,10 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Nombre", "Medida", "Unidad", "Precio", "Familia", "Envase", "Stock"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -327,12 +328,12 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 512, Short.MAX_VALUE)
                 .addComponent(jButton3))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +341,7 @@ public class Aplicacion extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Todos", jPanel3);
@@ -428,12 +429,24 @@ public class Aplicacion extends javax.swing.JFrame {
 
             model.addColumn("Codigo");
             model.addColumn("Nombre");
+            model.addColumn("Medida");
+            model.addColumn("Unidad");
+            model.addColumn("Precio");
+            model.addColumn("Familia");
+            model.addColumn("Envase");
+            model.addColumn("Stock");
 
             for (Producto producto : mostrarTodos) {
-                String nombre = producto.getNombre();
                 String codigo = String.format("%03d", producto.getCodigo());
+                String nombre = producto.getNombre();
+                double medida = producto.getMedida();
+                String unidadMedida = producto.getUnidadMedida();
+                Integer precioVenta = producto.getPrecioVenta();
+                String familiaProducto = producto.getFamiliaProducto();
+                String tipoEnvase = producto.getTipoEnvase();
+                Integer stock = producto.getStock();
 
-                Object[] data = {codigo, nombre};
+                Object[] data = {codigo, nombre, medida, unidadMedida, precioVenta, familiaProducto, tipoEnvase, stock};
 
                 model.addRow(data);
             }
@@ -442,6 +455,15 @@ public class Aplicacion extends javax.swing.JFrame {
             model.fireTableDataChanged();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ControladorProducto controlador = new ControladorProducto();
+        Integer bucarCodigo = this.jTextField6.getText();
+        controlador.buscar(bucarCodigo);
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
