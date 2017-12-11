@@ -4,11 +4,7 @@ import cl.polett.perfumeria.controlador.ControladorProducto;
 import cl.polett.perfumeria.modelo.Producto;
 import static java.lang.Integer.parseInt;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.text.TableView;
 
 /**
  *
@@ -391,8 +387,6 @@ public class Aplicacion extends javax.swing.JFrame {
         this.jTextArea1.setText("");
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    //private void ButtonGroup1ActionPerformed (java.awt.event.ActionEvent evt){
-    //}
     // BOTON AGREGAR
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ControladorProducto controlador = new ControladorProducto();
@@ -456,7 +450,7 @@ public class Aplicacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    // BOTON MODIFICAR
+    // BOTON MODIFICAR (ACTUALIZAR)
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         ControladorProducto controlador = new ControladorProducto();
         
@@ -479,7 +473,16 @@ public class Aplicacion extends javax.swing.JFrame {
 
     // BOTON ELIMINAR
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ControladorProducto controlador = new ControladorProducto();
+        Integer eliminaCodigo = parseInt(this.jTextField1.getText());
+        Boolean producto = controlador.eliminar(eliminaCodigo);
+        if(producto){
+            jLabel1.setText(String.valueOf("Producto eliminado"));
+        } else {
+            jLabel1.setText(String.valueOf("Producto NO eliminado"));
+        }
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

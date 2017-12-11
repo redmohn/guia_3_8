@@ -49,8 +49,23 @@ public class ControladorProducto {
 
     public boolean actualizar (Integer codigo, String nombre, String familiaProducto, String tipoEnvase, Double medida, String unidadMedida, String descripcion, Integer precioVenta, Integer stock){
       
+        // validaciones para el codigo - Reglas del negocio
+        if (codigo == null || codigo < 0 || codigo > 999) {
+            return false;
+        }
+
+        if (nombre == null || nombre.length() <= 0 || "".equals(nombre) || " ".equals(nombre)) {
+            return false;
+        }
+
+        if (precioVenta == null || precioVenta <= 0) {
+            return false;
+        }
+
+        if (stock == null || stock <= 0) {
+            return false;
+        }
         
-        //Producto producto = bd.actualizar(producto);
         Producto producto = new Producto();
         producto.setCodigo(codigo);
         producto.setDescripcion(descripcion);
@@ -66,6 +81,13 @@ public class ControladorProducto {
         boolean ok = bd.actualizar(producto);
         return ok;
         
+    }
+    
+    public boolean eliminar (Integer codigo){
+       
+        BD bd = new MySQL();
+        boolean ok = bd.eliminar(codigo);
+        return ok;        
     }
     
     public List<Producto> mostrarTodos() {
