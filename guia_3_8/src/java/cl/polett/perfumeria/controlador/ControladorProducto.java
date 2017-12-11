@@ -47,6 +47,27 @@ public class ControladorProducto {
         return ok;
     }
 
+    public boolean actualizar (Integer codigo, String nombre, String familiaProducto, String tipoEnvase, Double medida, String unidadMedida, String descripcion, Integer precioVenta, Integer stock){
+      
+        
+        //Producto producto = bd.actualizar(producto);
+        Producto producto = new Producto();
+        producto.setCodigo(codigo);
+        producto.setDescripcion(descripcion);
+        producto.setFamiliaProducto(familiaProducto);
+        producto.setMedida(medida);
+        producto.setNombre(nombre);
+        producto.setPrecioVenta(precioVenta);
+        producto.setStock(stock);
+        producto.setTipoEnvase(tipoEnvase);
+        producto.setUnidadMedida(unidadMedida);
+
+        BD bd = new MySQL();
+        boolean ok = bd.actualizar(producto);
+        return ok;
+        
+    }
+    
     public List<Producto> mostrarTodos() {
 
         BD bd = new MySQL();

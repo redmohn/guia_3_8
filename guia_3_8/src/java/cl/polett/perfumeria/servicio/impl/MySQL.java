@@ -137,14 +137,12 @@ public class MySQL implements BD {
             if (codigo != null) {
                 Connection conexion = conectar();
                 if (conexion != null) {
-
                     PreparedStatement prepareStatement = conexion.prepareStatement("SELECT * FROM producto WHERE codigo=?");
-                    prepareStatement.setInt(1, producto.getCodigo());
+                    prepareStatement.setInt(1, codigo);
                     // executeQuery se usa para sentencias SQL que retorna datos (SELECT)
                     // El resultset es la matriz con los resultados de la consulta
                     ResultSet rs = prepareStatement.executeQuery();
                     if (rs != null) {
-
                         while (rs.next()) {
                             producto = new Producto();
                             producto.setCodigo(rs.getInt("codigo"));
@@ -157,10 +155,8 @@ public class MySQL implements BD {
                             producto.setTipoEnvase(rs.getString("tipo_envase"));
                             producto.setUnidadMedida(rs.getString("unidad_medida"));
                         }
-
                         rs.close();
                     }
-
                     desconectar(conexion);
                 }
             }
