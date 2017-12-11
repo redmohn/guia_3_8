@@ -53,5 +53,12 @@ public class ControladorProducto {
         List<Producto> listadoProductos = bd.obtenerTodos();
         return listadoProductos;
     }
+    
+    public Producto mostrarUno (Integer codigo){
+        BD bd = new MySQL();
+        Producto unProducto = bd.obtener(codigo);
+        
+        return unProducto;
+    }   
 
 }
